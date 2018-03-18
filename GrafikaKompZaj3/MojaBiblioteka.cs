@@ -51,109 +51,13 @@ namespace MojaBiblioteka
         }
 
 
-        public double dlugoscProstej(Punkt drugiPunkt)
-        {
-            double a, b;
-            a = drugiPunkt.x - x;
-            b = drugiPunkt.y - y;
-            double ret = Math.Sqrt(Math.Pow(a, 2) + Math.Pow(b, 2));
-            return ret;
-        }
-
-        public Punkt wersor()
-        {
-            Punkt wektorJednostkowy = new Punkt(x,y);
-            double dlugosc = wektorJednostkowy.dlugoscProstej(new Punkt(0, 0));
-            Punkt wersor = wektorJednostkowy / dlugosc;
-            return wersor ;
-        }                          
-
-        public Punkt srodekOdcinka(Punkt drugiPunkt)
-        {
-            double srX,srY;
-            srX = (x + drugiPunkt.x) / 2;
-            srY = (y + drugiPunkt.y) / 2;
-
-            Punkt srodek = new Punkt(srX, srY);
-            return srodek;
-        }
-
-
-        public double katOstry(Punkt drugi)
-        {
-            double x1, x2, y1, y2;
-            x1 = x;
-            x2 = drugi.x;
-            y1 = y;
-            y2 = drugi.y;
-            return Math.Acos(Math.Abs(x1 * x2 + y1 + y2))*180/Math.PI;
-        }
-
     }
     class Prosta
     {
         public Punkt start, end;
 
         private System.Drawing.Pen pen1 = new System.Drawing.Pen(Color.Blue, 2);
-        public double countDelta(Prosta drugaProsta)
-        {
-            double x1, x2, x3, x4, y1, y2, y3, y4;
-            x1 = start.x;
-            x2 = end.x;
-            x3 = drugaProsta.start.x;
-            x4 = drugaProsta.end.x;
-            y1 = start.y;
-            y2 = end.y;
-            y3 = drugaProsta.start.y;
-            y4 = drugaProsta.end.y;
-            double delta = (x2 - x1) * (y3 - y4) - (x3 - x4) * (y2 - y1);
-            return delta;
-        }
-        public double countDeltaMi(Prosta drugaProsta)
-        {
-            if (countDelta(drugaProsta) == 0) return 0;
-            double x1, x2, x3, x4, y1, y2, y3, y4;
-            x1 = start.x;
-            x2 = end.x;
-            x3 = drugaProsta.start.x;
-            x4 = drugaProsta.end.x;
-            y1 = start.y;
-            y2 = end.y;
-            y3 = drugaProsta.start.y;
-            y4 = drugaProsta.end.y;
-
-            double deltaMi = (x3 - x1) * (y3 - y4) - (x3 - x4) * (y3 - y1);
-            return deltaMi;
-        }
-
-        public double katOstry(Prosta drugaProsta)
-        {
-            double x1, x2, x3, x4, y1, y2, y3, y4;
-            x1 = start.x;
-            x2 = end.x;
-            x3 = drugaProsta.start.x;
-            x4 = drugaProsta.end.x;
-            y1 = start.y;
-            y2 = end.y;
-            y3 = drugaProsta.start.y;
-            y4 = drugaProsta.end.y;
-
-
-            return Math.Acos(Math.Abs(x1*x3+y1+y3));
-        }
-
-    
-
-        public double countMi(Prosta drugaProsta)
-        {
-            double mi = countDeltaMi(drugaProsta) / countDelta(drugaProsta);
-            return mi;
-        } 
-        public Punkt Przeciecie(Prosta druga)
-        {
-            Punkt p1 = (1 - countMi(druga)) * this.start + (countMi(druga) * end);
-            return p1;
-        }
+        
 
         public void drawProsta(System.Drawing.Graphics g, int level)
         {
